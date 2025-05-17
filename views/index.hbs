@@ -1,0 +1,83 @@
+<h1 class="topText">{{title}}</h1>
+
+<!-- About section and inspiration -->
+<div class="frontPage">
+    <main>
+        <h2>About This Site</h2>
+        <hr>
+        <p>
+            We wanted to make a site that would allow people to post about their first video game and their memories with it!
+        </p>
+    </main>
+    <aside>
+        <h2>Inspiration</h2>
+         <hr>
+        <p>
+            The layout is inspired by people's game collecting racks/shelves, with the post icons being reminiscent of the software icons on the 3DS!
+        </p>
+    </aside>
+</div>
+
+<form id="search_form">
+    <input id="search_field" type="text" placeholder="Enter search term" />
+    <input type="submit" value="Submit" />
+</form>
+
+<section class="gameRack">
+    {{#each posts}}
+        <div class="post" data-id="{{this._id}}">
+            <h1>{{this.console}}</h1>
+            <h2>{{this.title}}</h2>
+            <p class="content" data-id="{{this._id}}">
+                <span class="content_text">{{this.content}}</span>
+                <button class="edit_content_button">Edit</button>
+            </p>
+            <p>Posted on {{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm a"}}</p>
+            {{#each this.author}}
+                <p>By <b>{{this.username}}</b></p>
+            {{/each}}
+            <button class="delete_button" data-id="{{this._id}}">Delete</button>
+        </div>
+    {{/each}}
+</section>
+
+<h2>Create a New Post</h2>
+<form id="new_post_form">
+    {{!-- FOLLOWING TWO FIELDS WILL BE FOR CUSTOM USERNAME AND CONSOLE TYPE --}}
+
+    {{!-- CUSTOM NAME --}}
+    <input id="name_field" type="text" placeholder="Enter a random name!"/>
+    {{!-- CONSOLE --}}
+    <input id="console_field" type="text" placeholder="Select console" list="consoles"/>
+    {{!-- List of consoles --}}
+    <datalist id="consoles">
+        <option value="Gamecube"></option>
+        <option value="Wii"></option>
+        <option value="Wii U"></option>
+        <option value="Switch"></option>
+        <option value="Gameboy"></option>
+        <option value="DS"></option>
+        <option value="3DS"></option>
+        <option value="Xbox"></option>
+        <option value="Xbox 360"></option>
+        <option value="Xbox One"></option>
+        <option value="PS1"></option>
+        <option value="PS2"></option>
+        <option value="PS3"></option>
+        <option value="PS4"></option>
+        <option value="PS5"></option>
+        <option value="PSP"></option>
+        <option value="PSVita"></option>
+        <option value="PC"></option>
+        <option value="Mobile Phone"></option>
+    </datalist>
+
+    {{!-- These three are for title and content inputs, alongside the submit button --}}
+    <input id="title_field" type="text" placeholder="Enter new title"/>
+    <input id="content_field" type="text" placeholder="Enter new content"/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <p>By Max Ty and Bryan Briones</p>
+</footer>
