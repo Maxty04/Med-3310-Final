@@ -1,0 +1,80 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+h1 {
+    margin: 0;
+}
+h1.topText {
+    text-align: center;
+    background-color: #d4a31c;
+    margin: 0;
+}
+h2 {
+    text-align: center;
+}
+a {
+  color: #00B7FF;
+}
+
+.frontPage {
+    display: flex;
+}
+.frontPage main, .frontPage aside {
+    margin-bottom: 0;
+    padding: 2%;
+    width: 50%;
+}
+main {
+    /* border: solid #000000; */
+    flex: 3;
+    background-color: #474747;
+    color: #ffffff;
+}
+aside {
+    /* border: solid #000000; */
+    flex: 1;
+    background-color: #faebd7;
+}
+
+.gameRack {
+    background-image: url("images/background.jpeg");
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: top left;
+
+    padding: 2%;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.post {
+    text-align: center;
+    width: 23%;
+    background-color: #ffffff;
+    margin: 1%;
+
+    border-radius: 16px;
+    border: double #474747;
+    border-width: 1em;
+    box-shadow: 0 4px 8px #0000004d;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    margin: 0;
+    text-align: center;
+}
