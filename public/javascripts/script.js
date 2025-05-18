@@ -1,57 +1,16 @@
 window.onload = function () {
-    //Edit button code
-    const editButtons = document.querySelectorAll('.edit_content_button');
-    editButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            // 1. Get parent element
-            const parentElement =event.currentTarget.parentElement;
-            // console.log(parentElement.querySelector('.content_text').innerText);
-            const text = (parentElement.querySelector('.content_text').innerText);
 
-            // 2. convert the <p> into an <input>
-            const inputElement = document.createElement('input');
-            inputElement.value = text;
-            
-            //Creates field to input change to text
-            parentElement.appendChild(inputElement);
-            //Allows the changes to be saved
-            const saveButton = document.createElement('button');
-            saveButton.textContent = 'Save';
+const clickSound = document.getElementById('clickSound');
 
-            const id = parentElement.getAttribute('data-id');
-            // console.log(id);
-            saveButton.addEventListener('click', async () => {
-                const body = JSON.stringify({
-                    content: inputElement.value,
-                })
-                const response = await fetch("/posts/" + id, {
-                    method: "PUT",
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8'
-                    },
-                    body: body,
-                });
-            })
-            parentElement.appendChild(saveButton);
-        })
-    })
-
-    //Delete button code
-    const deleteButtons = document.querySelectorAll('.delete_button');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', async (e) => {
-            const id = e.currentTarget.getAttribute('data-id');
-            const response = await fetch("/posts/" + id, {
-                method: "DELETE",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                },
-            });
-
-            //Refreshes page so the user can see updates once this function runs.
-            location.reload();
-        })
-    })
+function playClickSound() {
+    if (clickSound) {
+        clickSound.pause();
+        clickSound.currentTime = 0;
+        clickSound.play().catch((err) => console.log("Audio play failed:", err));
+    } else {
+        console.log("Audio element not found.");
+    }
+}
 
     //Creating new posts
     const newPostForm = document.getElementById('new_post_form');
@@ -66,7 +25,7 @@ window.onload = function () {
             createdAt: new Date(),
             //HARDCODED, change later for new authors
             authorId: '6827d5941b1e57f194f78002',
-        })
+        });
 
         console.log(body);
 
@@ -79,7 +38,7 @@ window.onload = function () {
         });
         //Refreshes page so the user can see updates once this function runs.
         location.reload();
-    })
+    });
 
     //Searching for terms in posts
     const searchForm = document.getElementById('search_form');
@@ -94,5 +53,54 @@ window.onload = function () {
         const posts = await response.json();
         // Clear posts.
         // Use JS to to create new post elements with json.
-    })
+    });
+
+    // Modal elements for popup window
+    const modal = document.getElementById('postModal');
+    const modalContentWrapper = modal.querySelector('div');
+    modalContentWrapper.style.textAlign = 'center';
+
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalConsole = document.getElementById('modalConsole');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const modalDate = document.getElementById('modalDate');
+    const modalAuthor = document.getElementById('modalAuthor');
+
+    // Show modal function
+    function showModal(postElement) {
+    modalConsole.textContent = postElement.querySelector('h4').textContent;
+    modalTitle.textContent = postElement.querySelector('h5').textContent;
+    modalContent.textContent = postElement.querySelector('.content_text').textContent;
+    const authorElement = postElement.querySelector('.author');
+    modalAuthor.textContent = authorElement ? authorElement.textContent : '';
+
+
+    modal.style.display = 'flex';
+    }
+
+//adds clickability to posts
+    const posts = document.querySelectorAll('.post');
+    posts.forEach(post => {
+
+        post.addEventListener('click', () => {
+    playClickSound();
+    showModal(post);
+});
+
+    // closes popup wndow
+    modalCloseBtn.addEventListener('click', () => {
+    playClickSound();
+    modal.style.display = 'none';
+});
+
+    modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        playClickSound();
+        modal.style.display = 'none';
+    }
+});
+
+});
+    
 };
