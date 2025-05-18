@@ -8,49 +8,59 @@
         <p>
             We wanted to make a site that would allow people to post about their first video game and their memories with it!
         </p>
+                    <p>A sort of collective subconcious memory of people hanging out in their friend's parents house and seeing a shelf full of movies and games around an entertainemnet system.
+                        Now this website serves a smilar feeling of storing your memories.  
+        </p>
     </main>
     <aside>
         <h2>Inspiration</h2>
          <hr>
         <p>
             The layout is inspired by people's game collecting racks/shelves, with the post icons being reminiscent of the software icons on the 3DS!
-        </p>
+            </p>
+
     </aside>
 </div>
 
 <form id="search_form">
-    <input id="search_field" type="text" placeholder="Enter search term" />
+    <select id="search_field">
+        <option value="" disabled selected>Select console</option>
+        <option value="Super Nintendo">Super Nintendo</option>
+        <option value="Nintendo 64">Nintendo 64</option>
+        <option value="Gamecube">Gamecube</option>
+        <option value="Wii">Wii</option>
+        <option value="Wii U">Wii U</option>
+        <option value="Switch">Switch</option>
+        <option value="Gameboy">Gameboy</option>
+        <option value="DS">DS</option>
+        <option value="3DS">3DS</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Xbox 360">Xbox 360</option>
+        <option value="Xbox One">Xbox One</option>
+        <option value="PS1">PS1</option>
+        <option value="PS2">PS2</option>
+        <option value="PS3">PS3</option>
+        <option value="PS4">PS4</option>
+        <option value="PS5">PS5</option>
+        <option value="PSP">PSP</option>
+        <option value="PSVita">PSVita</option>
+        <option value="PC">PC</option>
+        <option value="Mobile Phone">Mobile Phone</option>
+    </select>
     <input type="submit" value="Submit" />
 </form>
 
-<section class="gameRack">
-    {{#each posts}}
-        <div class="post" data-id="{{this._id}}">
-            <h1>{{this.console}}</h1>
-            <h2>{{this.title}}</h2>
-            <p class="content" data-id="{{this._id}}">
-                <span class="content_text">{{this.content}}</span>
-                <button class="edit_content_button">Edit</button>
-            </p>
-            <p>Posted on {{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm a"}}</p>
-            {{#each this.author}}
-                <p>By <b>{{this.username}}</b></p>
-            {{/each}}
-            <button class="delete_button" data-id="{{this._id}}">Delete</button>
-        </div>
-    {{/each}}
-</section>
-
-<h2>Create a New Post</h2>
+<h3>Create a New Post</h3>
 <form id="new_post_form">
     {{!-- FOLLOWING TWO FIELDS WILL BE FOR CUSTOM USERNAME AND CONSOLE TYPE --}}
 
     {{!-- CUSTOM NAME --}}
-    <input id="name_field" type="text" placeholder="Enter a random name!"/>
     {{!-- CONSOLE --}}
     <input id="console_field" type="text" placeholder="Select console" list="consoles"/>
     {{!-- List of consoles --}}
     <datalist id="consoles">
+        <option value="Super Nintendo"></option>
+        <option value="Nintendo 64"></option>
         <option value="Gamecube"></option>
         <option value="Wii"></option>
         <option value="Wii U"></option>
@@ -78,6 +88,43 @@
     <input type="submit" value="Submit"/>
 </form>
 
+<section class="gameRack">
+    {{#each posts}}
+        <div class="post" data-id="{{this._id}}">
+            <h4>{{this.console}}</h4>
+            <h5>{{this.title}}</h5>
+            <p class="content" data-id="{{this._id}}" style="display:none;">
+                <span class="content_text">{{this.content}}</span>
+            </p>
+            <div class="post-footer">
+                <p>Posted on {{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm a"}}</p>
+                {{#each this.author}}
+                    <p class="author">By <b>{{this.username}}</b></p>
+                {{/each}}
+            </div>
+        </div>
+    {{/each}}
+</section>
+
+
+
+<body>
+    <audio id="clickSound" src="/sounds/click.mp3" preload="auto"></audio>
+
+    <div id="postModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+    background: rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:1000;">
+    <div style="background:#fff; padding:20px; max-width:500px; width:90%; border-radius:8px; position:relative;">
+        <button id="modalCloseBtn" style="position:absolute; top:10px; right:10px; font-size:20px;">&times;</button>
+        <h4 id="modalConsole"></h4>
+        <h5 id="modalTitle"></h5>
+        <p id="modalContent"></p>
+        <p id="modalDate"></p>
+        <p id="modalAuthor"></p>
+    </div>
+</div>
+
+</body>
+
 <footer>
-    <p>By Max Ty and Bryan Briones</p>
+    <p>By Max Tyan and Bryan Briones</p>
 </footer>
