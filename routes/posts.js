@@ -78,44 +78,7 @@ router.post('/', function (req, res, next) {
     }
 })
 
-//Updates posts
-router.put('/:id', (req, res, next) => {
-    // console.log(req.params);
-    // console.log(req.body);
-    try {
-        // 1. connect to database "videogames" and save it as a variable to refer back to.
-        const videoGame_Collection = database.client.db('videogames');
-        // 2. get collection "posts"
-        const posts = videoGame_Collection.collection('posts');
-        // 3. update a document in collection "posts"
-        posts.updateOne(
-            { _id: new ObjectId(req.params.id) },
-            { $set: { content: req.body.content } }
-        )
-        res.send("Successfuly updated a new post!")
-    } catch (error) {
-        console.log("Oops! All Errors!", error);
-        res.status(500).send('Your post was not successfully edited: ' + error);
-    }
-})
+//finds posts
 
-//Deletes posts
-router.delete('/:id', (req, res, next) => {
-    try {
-        // 1. connect to database "videogames" and save it as a variable to refer back to.
-        const videoGame_Collection = database.client.db('videogames');
-        // 2. get collection "posts"
-        const posts = videoGame_Collection.collection('posts');
-
-        // 3. delete this document with a matching id
-        posts.deleteOne(
-            { _id: new ObjectId(req.params.id) }
-        );
-        res.send("Successfuly deleted post!")
-    } catch(error) {
-        console.log("Oops! All Errors!", error);
-        res.status(500).send('Your post was not successfully deleted: ' + error);
-    }
-})
 
 module.exports = router;
