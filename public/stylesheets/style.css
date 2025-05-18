@@ -72,17 +72,17 @@ main {
 }
 
 #search_form {
-  text-align: center;          /* Center the form */
-  margin: 20px auto;           /* Add vertical spacing */
-  max-width: 400px;            /* Limit the width */
+  text-align: center;         
+  margin: 20px auto;           
+  max-width: 400px;           
 }
 
 #search_field {
-  width: 70%;                  /* Input takes most of the space */
-  padding: 8px 12px;           /* Comfortable padding */
-  font-size: 1rem;             /* Matches heading size scale */
-  border: 2px solid #ccc;      /* Subtle border */
-  border-radius: 5px 0 0 5px; /* Rounded left corners */
+  width: 70%;                 
+  padding: 8px 12px;          
+  font-size: 1rem;             
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px; 
   outline: none;
   box-sizing: border-box;
 }
