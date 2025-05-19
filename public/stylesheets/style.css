@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {
+.bodyReplacement {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
@@ -14,9 +14,12 @@ body {
     #d2a679 20px
 );
 }
+body {
+  margin: 0;
+}
 .post {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background: #ffffffe6;
+    box-shadow: 0 4px 8px #0000004d;
     border-radius: 8px;
     margin: 1em auto;
     padding: 1em;
@@ -50,7 +53,7 @@ h4 {
 h5{ 
    text-align: center;
    font-size: large;
-   color: red; 
+   color: #ff0000; 
 }
 a {
   color: #00B7FF;
@@ -62,13 +65,15 @@ a {
 .frontPage main, .frontPage aside {
     margin-bottom: 0;
     padding: 2%;
-    width: 50%;
 }
 main {
-    /* border: solid #000000; */
     flex: 3;
     background-color: #474747;
     color: #ffffff;
+}
+aside {
+    flex: 1;
+    background-color: #faebd7;
 }
 
 #search_form {
@@ -127,8 +132,11 @@ main {
 #new_post_form {
     display: flex;
     flex-direction: column;
-    width: 100%;
     gap: 1em;
+
+    text-align: center;         
+    margin: 10px auto;           
+    max-width: 600px; 
 }
 
 #new_post_form input[type="text"],
@@ -137,12 +145,6 @@ main {
     font-size: 1em;
     width: 100%;
     box-sizing: border-box;
-}
-
-aside {
-    /* border: solid #000000; */
-    flex: 1;
-    background-color: #faebd7;
 }
 
 .gameRack {
@@ -219,6 +221,6 @@ footer {
     text-align: center;
 }
 
-
-
-
+.backgroundHere {
+  background-image: url('../images/background.jpeg');
+}
