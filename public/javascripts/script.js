@@ -1,16 +1,16 @@
 window.onload = function () {
 
-const clickSound = document.getElementById('clickSound');
-
-function playClickSound() {
-    if (clickSound) {
-        clickSound.pause();
-        clickSound.currentTime = 0;
-        clickSound.play().catch((err) => console.log("Audio play failed:", err));
-    } else {
-        console.log("Audio element not found.");
+    //Audio to play when clicking on posts
+    const clickSound = document.getElementById('clickSound');
+    function playClickSound() {
+        if (clickSound) {
+            clickSound.pause();
+            clickSound.currentTime = 0;
+            clickSound.play().catch((err) => console.log("Audio play failed:", err));
+        } else {
+            console.log("Audio element not found.");
+        }
     }
-}
 
     //Creating new posts
     const newPostForm = document.getElementById('new_post_form');
@@ -40,20 +40,96 @@ function playClickSound() {
         location.reload();
     });
 
-    //Searching for terms in posts
+    //Searching for posts
     const searchForm = document.getElementById('search_form');
     searchForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const searchField = document.getElementById('search_field');
         const value = searchField.value;
-        console.log(value);
+        console.log("Searching for:", value);
 
-        const response = await fetch('/posts?search=' + value);
+        //Using encodeURIComponent so there's no errors if a user manually types in console.
+        const response = await fetch('/posts?search=' + encodeURIComponent(value));
         const posts = await response.json();
-        // Clear posts.
-        // Use JS to to create new post elements with json.
+
+        //Clearing all existing posts
+        const gameRack = document.querySelector('.gameRack');
+        gameRack.innerHTML = '';
+
+        posts.forEach(post => {
+            const author = post.author?.[0]?.username || 'Unknown';
+            const createdAt = new Date(post.createdAt).toLocaleString();
+
+            const postCart = document.createElement('div');
+            postCart.classList.add('post');
+            postCart.dataset.id = post._id;
+
+            postCart.innerHTML = `
+                <h4>${post.console}</h4>
+                <h5>${post.title}</h5>
+                <p class="content" data-id="${post._id}" style="display:none;">
+                    <span class="content_text">${post.content}</span>
+                </p>
+                <div class="post-footer">
+                    <p>Posted on ${createdAt}</p>
+                    <p class="author">By <b>${author}</b></p>
+                </div>
+            `;
+
+            // Add click listener to each new post
+            postCart.addEventListener('click', () => {
+                playClickSound();
+                showModal(postCart);
+            });
+
+            gameRack.appendChild(postCart);
+        });
     });
+    //Resets Search/Shows all posts
+    const resetButton = document.getElementById('reset_search_btn');
+    resetButton.addEventListener('click', async () => {
+        //Clears selection
+        document.getElementById('search_field').selectedIndex = 0;
+
+        //Fetch all posts again
+        const response = await fetch('/posts');
+        const posts = await response.json();
+
+        //Updates
+        updatePosts(posts);
+    });
+    //Function for updating posts when clicking the All Posts button
+    function updatePosts(posts) {
+        const gameSection = document.querySelector('.gameRack');
+        gameSection.innerHTML = ''; //Clears posts
+
+        posts.forEach(post => {
+            const div = document.createElement('div');
+            div.className = 'post';
+            div.dataset.id = post._id;
+
+            div.innerHTML = `
+                <h4>${post.console}</h4>
+                <h5>${post.title}</h5>
+                <p class="content" data-id="${post._id}" style="display:none;">
+                    <span class="content_text">${post.content}</span>
+                </p>
+                <div class="post-footer">
+                    <p>Posted on ${new Date(post.createdAt).toLocaleString()}</p>
+                    <p class="author">By <b>${(post.author[0]?.username || 'Unknown')}</b></p>
+                </div>
+            `;
+
+            //Once again making posts clickable
+            div.addEventListener('click', () => {
+                playClickSound();
+                showModal(div);
+            });
+
+            gameSection.appendChild(div);
+        });
+    }
 
     // Modal elements for popup window
     const modal = document.getElementById('postModal');
@@ -69,38 +145,37 @@ function playClickSound() {
 
     // Show modal function
     function showModal(postElement) {
-    modalConsole.textContent = postElement.querySelector('h4').textContent;
-    modalTitle.textContent = postElement.querySelector('h5').textContent;
-    modalContent.textContent = postElement.querySelector('.content_text').textContent;
-    const authorElement = postElement.querySelector('.author');
-    modalAuthor.textContent = authorElement ? authorElement.textContent : '';
+        modalConsole.textContent = postElement.querySelector('h4').textContent;
+        modalTitle.textContent = postElement.querySelector('h5').textContent;
+        modalContent.textContent = postElement.querySelector('.content_text').textContent;
+        const authorElement = postElement.querySelector('.author');
+        modalAuthor.textContent = authorElement ? authorElement.textContent : '';
 
 
-    modal.style.display = 'flex';
+        modal.style.display = 'flex';
     }
 
-//adds clickability to posts
+    //Adding clickability to posts
     const posts = document.querySelectorAll('.post');
     posts.forEach(post => {
-
         post.addEventListener('click', () => {
-    playClickSound();
-    showModal(post);
-});
+            playClickSound();
+            showModal(post);
+        });
 
-    // closes popup wndow
-    modalCloseBtn.addEventListener('click', () => {
-    playClickSound();
-    modal.style.display = 'none';
-});
+        // closes popup wndow
+        modalCloseBtn.addEventListener('click', () => {
+            playClickSound();
+            modal.style.display = 'none';
+        });
 
-    modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        playClickSound();
-        modal.style.display = 'none';
-    }
-});
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                    playClickSound();
+                    modal.style.display = 'none';
+            }
+        });
 
-});
+    });
     
 };
