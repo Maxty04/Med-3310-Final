@@ -1,12 +1,23 @@
 window.onload = function () {
 
-    //Audio to play when clicking on posts
+    //Audio to play when opening on post
     const clickSound = document.getElementById('clickSound');
     function playClickSound() {
         if (clickSound) {
             clickSound.pause();
             clickSound.currentTime = 0;
             clickSound.play().catch((err) => console.log("Audio play failed:", err));
+        } else {
+            console.log("Audio element not found.");
+        }
+    }
+    //Audio to close posts
+    const closeSound = document.getElementById('closeSound');
+    function playCloseSound() {
+        if (closeSound) {
+            closeSound.pause();
+            closeSound.currentTime = 0;
+            closeSound.play().catch((err) => console.log("Audio play failed:", err));
         } else {
             console.log("Audio element not found.");
         }
@@ -151,7 +162,6 @@ window.onload = function () {
         const authorElement = postElement.querySelector('.author');
         modalAuthor.textContent = authorElement ? authorElement.textContent : '';
 
-
         modal.style.display = 'flex';
     }
 
@@ -165,16 +175,18 @@ window.onload = function () {
 
         // closes popup wndow
         modalCloseBtn.addEventListener('click', () => {
-            playClickSound();
-            modal.style.display = 'none';
+        playCloseSound();
+        modal.style.display = 'none';
         });
 
+
         modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                    playClickSound();
-                    modal.style.display = 'none';
-            }
-        });
+        if (event.target === modal) {
+        playCloseSound();
+        modal.style.display = 'none';
+        }
+    });
+
 
     });
     
