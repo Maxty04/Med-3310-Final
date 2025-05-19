@@ -12,7 +12,6 @@ function playClickSound() {
     }
 }
 
-
     //Creating new posts
     const newPostForm = document.getElementById('new_post_form');
     newPostForm.addEventListener("submit", async (e) => {
