@@ -61,6 +61,8 @@ a {
 
 .frontPage {
     display: flex;
+    margin-bottom: 0;
+    overflow: hidden;
 }
 .frontPage main, .frontPage aside {
     margin-bottom: 0;
@@ -169,9 +171,10 @@ aside {
   text-align: center;
   background-color: #ffffff;
   margin: 0;
+  margin-bottom: 0.5em;
   border-radius: 16px;
   border: double #474747;
-  border-width: 1em;
+  border-width: 2em;
   box-shadow: 0 4px 8px #0000004d;
   cursor: pointer;
   display: flex;
@@ -219,8 +222,20 @@ aside {
 footer {
     margin: 0;
     text-align: center;
+    color: #ffffff;
+    background-color: #0056b3;
+}
+footer p {
+    margin: 0;
+    padding: 1em;
+    /* Font stuff */
+    font-size: 1.5em;
 }
 
 .backgroundHere {
-  background-image: url('../images/background.jpeg');
+  background-image: url('/images/wood.jpg');
+  background-size: cover;
+  background-repeat: repeat;
+  margin-top: 0;
+  padding-top: 1%;
 }
