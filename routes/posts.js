@@ -7,7 +7,7 @@ const { ObjectId } = require('mongodb');
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
     console.log(req.query.search);
-    const searchTerm = req.query.searchTerm;
+    const searchTerm = req.query.search || '';
   try {
     // 1. connect to database "videogames" and save it as a variable to refer back to.
     const videoGame_Collection = database.client.db('videogames');
@@ -17,11 +17,12 @@ router.get('/', async function(req, res, next) {
     const allPosts = await posts
     .aggregate([
         {
-            //In case we want a working search bar, we can use this
+            //Search bar stuff
             $match: {
-                content: {
-                    $regex: searchTerm,
-                    // $options: "i" // case-insensitive in case we want it
+                console: {
+                    //Leads to exact searches
+                    $regex: '^' + searchTerm + '$',
+                    $options: "i"
                 }
             }
         },

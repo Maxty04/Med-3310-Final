@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {
+.bodyReplacement {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
@@ -14,9 +14,12 @@ body {
     #d2a679 20px
 );
 }
+body {
+  margin: 0;
+}
 .post {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background: #ffffffe6;
+    box-shadow: 0 4px 8px #0000004d;
     border-radius: 8px;
     margin: 1em auto;
     padding: 1em;
@@ -37,10 +40,14 @@ h2 {
 }
 h3 {
     text-align: center;
-    background-color: #d4a31c;
+    background-color: #d4b766;
     margin: 0;
     padding: 0.5em;
     border-radius: 8px;
+}
+.hThree_Wrapper {
+    margin: auto;
+    width: 50%;
 }
 h4 {
     text-align: center;
@@ -50,7 +57,7 @@ h4 {
 h5{ 
    text-align: center;
    font-size: large;
-   color: red; 
+   color: #ff0000; 
 }
 a {
   color: #00B7FF;
@@ -58,17 +65,21 @@ a {
 
 .frontPage {
     display: flex;
+    margin-bottom: 0;
+    overflow: hidden;
 }
 .frontPage main, .frontPage aside {
     margin-bottom: 0;
     padding: 2%;
-    width: 50%;
 }
 main {
-    /* border: solid #000000; */
     flex: 3;
     background-color: #474747;
     color: #ffffff;
+}
+aside {
+    flex: 1;
+    background-color: #faebd7;
 }
 
 #search_form {
@@ -121,14 +132,17 @@ main {
     background-color: #f9f9f9;
     border: 2px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px #0000001a;
 }
 
 #new_post_form {
     display: flex;
     flex-direction: column;
-    width: 100%;
     gap: 1em;
+
+    text-align: center;         
+    margin: 10px auto;           
+    max-width: 600px; 
 }
 
 #new_post_form input[type="text"],
@@ -137,12 +151,6 @@ main {
     font-size: 1em;
     width: 100%;
     box-sizing: border-box;
-}
-
-aside {
-    /* border: solid #000000; */
-    flex: 1;
-    background-color: #faebd7;
 }
 
 .gameRack {
@@ -167,9 +175,7 @@ aside {
   text-align: center;
   background-color: #ffffff;
   margin: 0;
-  border-radius: 16px;
-  border: double #474747;
-  border-width: 1em;
+  margin-bottom: 0.5em;
   box-shadow: 0 4px 8px #0000004d;
   cursor: pointer;
   display: flex;
@@ -178,6 +184,10 @@ aside {
   align-items: center;
   box-sizing: border-box;
   text-align: center;
+  background: linear-gradient(#ffffff, #9fb6b1);
+  border: double #474747;
+  border-radius: 16px;
+  border-width: 2em;
 }
 
 /*3 posts per row */
@@ -217,8 +227,25 @@ aside {
 footer {
     margin: 0;
     text-align: center;
+    color: #ffffff;
+    background-color: #0056b3;
+}
+footer p {
+    margin: 0;
+    padding: 1em;
+    /* Font stuff */
+    font-size: 1.5em;
 }
 
+.backgroundHere {
+  background-image: url('/images/wood.jpg');
+  background-size: cover;
+  background-repeat: repeat;
+  margin-top: 0;
+  padding-top: 1%;
+}
 
-
-
+#reset_search_btn {
+    padding: 1%;
+    margin-top: 2%;
+}
