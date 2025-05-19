@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
             $match: {
                 console: {
                     //Leads to exact searches
-                    $regex: '^' + searchTerm + '$',
+                    $regex: searchTerm, //'^' + searchTerm + '$'
                     $options: "i"
                 }
             }
