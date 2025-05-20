@@ -35,7 +35,7 @@ router.get('/', async function (req, res, next) {
 
     // 4. pass array to handlebars template
     res.render('index', {
-      title: 'Video Game Memories (WIP)',
+      title: 'Gaming Memories',
       posts: allPosts,
     });
   // console.log(database.client);
