@@ -28,15 +28,41 @@ body {
 
 h1 {
     margin: 0;
+    padding-bottom: 0.5%;
+}
+.titleBackground {
+    background: linear-gradient(#3f1738, #122335);
+    border: solid #0056b3;;
+}
+.asideBackground {
+    background-image: url(/images/tv_title.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.textBackground {
+    background-image: url(/images/cubby.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 h1.topText {
     text-align: center;
-    background-color: #d4a31c;
+    color: #ffffff;
     margin: 0;
+
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4em;
 }
 h2 {
     text-align: center;
-    color:cornflowerblue
+    color:#002b7c;
+    margin-bottom: 1%;
+}
+main h2 {
+    color: #ffffff;
 }
 h3 {
     text-align: center;
@@ -48,6 +74,12 @@ h3 {
 .hThree_Wrapper {
     margin: auto;
     width: 50%;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 h4 {
     text-align: center;
@@ -57,16 +89,20 @@ h4 {
 h5{ 
    text-align: center;
    font-size: large;
-   color: #ff0000; 
+   color: #000000; 
 }
 a {
   color: #00B7FF;
+}
+hr {
+  width: 75%;
 }
 
 .frontPage {
     display: flex;
     margin-bottom: 0;
     overflow: hidden;
+    border: 2px solid #d2b48c;
 }
 .frontPage main, .frontPage aside {
     margin-bottom: 0;
@@ -76,16 +112,51 @@ main {
     flex: 3;
     background-color: #474747;
     color: #ffffff;
+    text-align: center;
+}
+main h2 {
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2em;
+}
+main p {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.mainTop, .mainBottom {
+    border: solid #000000;
+    background-color: #3e4852;
+    border-radius: 1em;
 }
 aside {
     flex: 1;
     background-color: #faebd7;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+aside p {
+  margin-top: 0;
+  padding: 2%;
+  padding-left: 4%;
+  padding-right: 4%;
 }
 
 #search_form {
-  text-align: center;         
-  margin: 20px auto;           
-  max-width: 400px;           
+    text-align: center;         
+    margin: 20px auto;           
+    max-width: 400px;      
+    
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 #search_field {
@@ -100,7 +171,7 @@ aside {
 
 #search_field:focus {
   border-color: #007BFF;       /* Blue border on focus */
-  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+  box-shadow: 0 0 5px #007bff80;
 }
 
 #search_form input[type="submit"] {
@@ -154,17 +225,25 @@ aside {
 }
 
 .gameRack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1%;  /*space between posts */
-  padding: 2%;
-  margin: 0;
-  background-image: url("");
-  background-repeat: repeat-y;
-  background-size: cover;
-  background-position: top left;
-  box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1%;  /*space between posts */
+    padding: 2%;
+    margin: 0;
+    background-image: url("");
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: top left;
+    box-sizing: border-box;
+
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+.gameRack p {
+  padding-bottom: 1%;
 }
 
 .post {
@@ -228,12 +307,15 @@ footer {
     margin: 0;
     text-align: center;
     color: #ffffff;
-    background-color: #0056b3;
+    background-color: #331900;
 }
 footer p {
     margin: 0;
     padding: 1em;
     /* Font stuff */
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.5em;
 }
 
@@ -245,7 +327,69 @@ footer p {
   padding-top: 1%;
 }
 
-#reset_search_btn {
-    padding: 1%;
-    margin-top: 2%;
+/* Console styling */
+.post-header {
+    width: 100%;
+    padding: 0.5em;
+    color: white;
+    border-radius: 32px;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
 }
+/* Default (Testing) */
+.console-label {
+    border-radius: 5px;
+    display: block;
+    padding: auto 50% auto 50%;
+    background-color: #3e4852;
+}
+/* Console Colors */
+/* SONY */
+.console-label.ps1, .console-label.ps2, .console-label.ps3, .console-label.ps4, .console-label.ps5 {
+    background-color: #003791;
+    color: white;
+}
+.console-label.psp, .console-label.psvita {
+    background-color: #292929;
+    margin: fit-content;
+    color: white;
+}
+/* MICROSOFT */
+.console-label.xbox, .console-label.xbox-360, .console-label.xbox-one {
+    background-color: #107C10;
+    margin: fit-content;
+    color: white;
+}
+/* NINTENDO */
+.console-label.switch, .console-label.nintendo-64, .console-label.super-nintendo, .console-label.wii {
+    background-color: #E60012;
+    color: white;
+}
+.console-label.gamecube, .console-label.gameboy {
+    background-color: #491d72;
+    margin: fit-content;
+    color: white;
+}
+.console-label.ds, .console-label.nintendo-3ds {
+    background-color: #00639c;
+    margin: fit-content;
+    color: white;
+}
+/* OTHER */
+.console-label.mobile-phone, .console-label.pc {
+    background-color: #000125;
+    margin: fit-content;
+    color: white;
+}
+
+#reset_search_btn {
+    width: 100%;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    color: #000000;
+    border-radius: 2em;
+    font-size: large;
+    font-weight: bold;
+}
+
