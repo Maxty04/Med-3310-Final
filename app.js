@@ -7,6 +7,11 @@ var logger = require('morgan');
 var hbs = require('hbs');
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
+//This is for styling purposes (turning spaces into - allows me to style for consoles with spaces in their name)
+hbs.registerHelper('consoleClass', function(consoleName) {
+  return consoleName.toLowerCase().replace(/\s+/g, '-');
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');

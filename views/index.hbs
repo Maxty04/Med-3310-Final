@@ -1,24 +1,30 @@
-<h1 class="topText">{{title}}</h1>
+<div class="titleBackground">
+    <h1 class="topText">{{title}}</h1>
+</div>
 
 <!-- About section and inspiration -->
 <div class="frontPage">
-    <main>
-        <h2>About This Site</h2>
+    <main class="textBackground">
+        <div class="mainTop">
+            <h2>About This Site</h2>
+        <hr>
+        </div>
+        <div  class="mainBottom">
+            <p>
+                We wanted to make a site that would allow people to post about their first video game and their memories with it!
+            </p>
+            <p>
+                A sort of collective subconcious memory of people hanging out in their friend's parents house and seeing a shelf full of movies and games around an entertainemnet system. Now this website serves a smilar feeling of storing your memories.  
+            </p>
+        </div>
+        
+    </main>
+    <aside class="asideBackground">
+        <h2>Inspiration</h2>
         <hr>
         <p>
-            We wanted to make a site that would allow people to post about their first video game and their memories with it!
-        </p>
-                    <p>A sort of collective subconcious memory of people hanging out in their friend's parents house and seeing a shelf full of movies and games around an entertainemnet system.
-                        Now this website serves a smilar feeling of storing your memories.  
-        </p>
-    </main>
-    <aside>
-        <h2>Inspiration</h2>
-         <hr>
-        <p>
             The layout is inspired by people's game collecting racks/shelves, with the post icons being reminiscent of the software icons on the 3DS!
-            </p>
-
+        </p>
     </aside>
 </div>
 
@@ -32,8 +38,8 @@
             <option value="Wii">Wii</option>
             <option value="Switch">Switch</option>
             <option value="Gameboy">Gameboy</option>
-            <option value="DS">DS</option>
-            <option value="3DS">3DS</option>
+            <option value="DS">Nintendo DS</option>
+            <option value="Nintendo 3DS">Nintendo 3DS</option>
             <option value="Xbox">Xbox</option>
             <option value="Xbox 360">Xbox 360</option>
             <option value="Xbox One">Xbox One</option>
@@ -69,7 +75,7 @@
             <option value="Switch"></option>
             <option value="Gameboy"></option>
             <option value="DS"></option>
-            <option value="3DS"></option>
+            <option value="Nintendo 3DS"></option>
             <option value="Xbox"></option>
             <option value="Xbox 360"></option>
             <option value="Xbox One"></option>
@@ -93,17 +99,23 @@
     <section class="gameRack">
         {{#each posts}}
             <div class="post" data-id="{{this._id}}">
-                <h4>{{this.console}}</h4>
+                <div class="post-header console-label {{consoleClass this.console}}">
+                    <h4>{{this.console}}</h4>
+                </div>
+                
                 <h5>{{this.title}}</h5>
+
                 <p class="content" data-id="{{this._id}}" style="display:none;">
                     <span class="content_text">{{this.content}}</span>
                 </p>
+
                 <div class="post-footer">
                     <p>Posted on {{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm a"}}</p>
-                    {{#each this.author}}
+                    {{!-- {{#each this.author}}
                         <p class="author">By <b>{{this.username}}</b></p>
-                    {{/each}}
+                    {{/each}} --}}
                 </div>
+                
             </div>
         {{/each}}
     </section>
@@ -127,7 +139,7 @@
     </div>
 
     <footer>
-        <p>By Max Tyan and Bryan Briones</p>
+        <p>By Max Tyan and Bryan Briones &copy;2025</p>
     </footer>
 </div>
 
